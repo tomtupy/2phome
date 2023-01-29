@@ -1,0 +1,9 @@
+*.jpg
+.Trash*
+newrelic.ini
+__pycache__
+chromedriver
+newrelic.js
+node_modules
+gui/release/app/node_modules
+dll

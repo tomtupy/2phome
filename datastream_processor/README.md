@@ -1,0 +1,2 @@
+mvn clean -e install
+java -jar -javaagent:/opt/newrelic/newrelic.jar -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 /home/tom/.m2/repository/datastream_processor/datastream_processor/0.1/datastream_processor-0.1.jar
