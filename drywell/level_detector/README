@@ -1,0 +1,11 @@
+python3 labelme2voc.py datasets/1/train datasets/1/train_voc --labels datasets/1/labels.txt
+
+python3 voc_annotation.py datasets/1/train
+
+# on gpu host
+python3 train.py datasets\1\train_voc
+
+
+
+# Start model server
+flask --app inference_server run

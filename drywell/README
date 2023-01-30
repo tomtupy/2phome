@@ -1,3 +1,0 @@
-python3 labelme2voc.py /home/tom/2phome/drywell_cam_images/images/datasets2/train /home/tom/2phome/drywell_cam_images/images/datasets2/train_voc --labels /home/tom/2phome/drywell_cam_images/images/datasets2/labels.txt
-
-~/2phome/drywell_cam_images/images$ python3 /mnt/2phome/drywell/voc_annotation.py

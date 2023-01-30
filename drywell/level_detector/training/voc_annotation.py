@@ -1,10 +1,9 @@
 import os
 import random
 import glob
-
-TRAINVAL_PERCENT = 1
-TRAIN_PERCENT = 0.9
-DATASET_PATH = 'datasets2/train_voc'
+import argparse
+import os.path as osp
+import sys
 
 
 def get_file_names(dir, filter="*.png"):
@@ -17,10 +16,22 @@ def get_file_names(dir, filter="*.png"):
 
 if __name__ == "__main__":
     random.seed(0)
+
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("dataset_dir", help="dataset directory")
+    parser.add_argument("--validation_pct", help="validation percentage", required=False, default=1, type=float)
+    parser.add_argument("--train_pct", help="training percentage", required=False, default=0.9, type=float)
+    args = parser.parse_args()
+
+    if not osp.exists(args.dataset_dir):
+        print("Dataset directory does noty exist:", args.dataset_dir)
+        sys.exit(1)
+
     print("Generate txt in ImageSets.")
 
-    seg_filepath = os.path.join(DATASET_PATH, 'SegmentationClassPNG')
-    saveBasePath = os.path.join(DATASET_PATH, 'ImageSets/Segmentation')
+    seg_filepath = os.path.join(args.dataset_dir, 'SegmentationClassPNG')
+    saveBasePath = os.path.join(args.dataset_dir, 'ImageSets/Segmentation')
     if not os.path.exists(saveBasePath):
         os.makedirs(saveBasePath)
 
@@ -28,8 +39,8 @@ if __name__ == "__main__":
 
     num = len(total_seg)
     seg_list = range(num)
-    tv = int(num * TRAINVAL_PERCENT)
-    tr = int(tv * TRAIN_PERCENT)
+    tv = int(num * args.validation_pct)
+    tr = int(tv * args.train_pct)
     trainval = random.sample(seg_list, tv)
     train = random.sample(trainval, tr)
 

@@ -1,0 +1,11 @@
+wellcam.jpg
+*.jpg
+*.png
+*.h5
+__pycache__
+test.txt
+train.txt
+trainval.txt
+val.txt
+wellcam_*.npy
+wellcam_*.json
