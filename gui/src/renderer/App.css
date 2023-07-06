@@ -6,12 +6,7 @@ body {
   position: relative;
   color: white;
   height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
+  background-color: rgb(30,30,30) !important;
   font-family: sans-serif;
   overflow-y: hidden;
   justify-content: center;
@@ -73,4 +68,42 @@ a:hover {
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+}
+
+.highcharts-grid.highcharts-xaxis-grid path:first-child {
+  display: none !important;
+}
+
+
+.sidebar-wrapper{
+  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
+  0px 18px 88px -4px rgba(24, 39, 75, 0.14);
+} 
+
+.sidebar-card {
+  margin-top: 0px !important;
+  margin-bottom: 3px !important;
+  padding: 0 !important;
+  width: 160px !important;
+  background-color: rgb(87,87,87) !important;
+}
+
+.highcharts-container {
+  overflow: visible !important;
+}
+
+.weather-forecast-day-info-container {
+  padding: 0px !important;
+  margin-top: 6px !important;
+  width: 80px !important;
+  border:rgb(6, 7, 8) !important;
+  border-width: 0px !important;
+  border-style: solid !important;
+  font-size: 11px;
+}
+
+.weather-forecast-day-info-row {
+  padding: 0px !important;
+  padding-left: 5px !important;
+  margin: 0px !important;
 }

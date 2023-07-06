@@ -52,9 +52,7 @@ const LiveEarthViewOverlay = () => {
       bottom: 0,
       fontSize: 'smaller',
       height: '22px',
-      width: '600px',
-      borderBottomLeftRadius: '0.375rem',
-      borderBottomRightRadius: '0.375rem'
+      width: '768px',
     }}>
       <Stack direction="horizontal" gap={2}>
         <span style={{

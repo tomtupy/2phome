@@ -54,7 +54,8 @@ export type OpenMetroResponse = {
     windspeed_10m_max: string,
     windgusts_10m_max: string,
     winddirection_10m_dominant: string,
-    shortwave_radiation_sum: string
+    shortwave_radiation_sum: string,
+    precipitation_probability_max: string
   },
   daily: {
     time: string[],
@@ -64,6 +65,7 @@ export type OpenMetroResponse = {
     sunrise: string[],
     sunset: string[],
     precipitation_sum: number[],
+    precipitation_probability_max: number[],
     rain_sum: number[],
     showers_sum: number[],
     snowfall_sum: number[],

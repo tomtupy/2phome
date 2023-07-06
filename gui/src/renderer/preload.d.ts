@@ -5,6 +5,8 @@ declare global {
         getSensorData(): void;
         loadEarthImageryData(): void;
         getDrywellImages(): void;
+        execPythonScript(script: string): void;
+        getPingData(): void;
         on(
           channel: string,
           func: (...args: unknown[]) => void

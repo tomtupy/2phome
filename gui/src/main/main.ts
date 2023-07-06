@@ -9,22 +9,12 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { resolveHtmlPath } from './util';
-//import { SensorData } from '../db/SensorData';
-import { Client } from 'pg'
-import { loadImageryIntoLocalStorage } from './helpers/imagery_loader';
-import { Imagery } from './constants';
+import { IpcHandlers } from './ipc_handlers';
 
-const client = new Client({
-  host: '192.168.0.69',
-  port: 5432,
-  user: 'tom',
-  password: '',
-  database: '2phome'
-})
 
 export default class AppUpdater {
   constructor() {
@@ -34,17 +24,8 @@ export default class AppUpdater {
   }
 }
 
-client.connect((err) => {
-  if (err) {
-    console.error('connection error', err.stack)
-  } else {
-    console.log('connected')
-  }
-})
-
+let ipcHandlers: IpcHandlers | null = null;
 let mainWindow: BrowserWindow | null = null;
-//let sensorData: SensorData = new SensorData;
-
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -125,26 +106,14 @@ const createWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
+
+  ipcHandlers = new IpcHandlers(mainWindow, app);
+  ipcHandlers.setup();
 };
 
 /**
  * Add event listeners...
  */
-
-app.on('window-all-closed', () => {
-  // Respect the OSX convention of having the application in memory even
-  // after all windows have been closed
-  client.end((err) => {
-    console.log('client has disconnected')
-    if (err) {
-      console.log('error during disconnection', err.stack)
-    }
-  })
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
 app
   .whenReady()
   .then(() => {
@@ -157,33 +126,3 @@ app
   })
   .catch(console.log);
 
-ipcMain.on("LOAD_EARTH_IMAGERY_DATA", async (event, arg) => {
-  try {
-    const finalFileEntries = await loadImageryIntoLocalStorage(Imagery.LiveEarthView, mainWindow)
-    event.reply("LOAD_EARTH_IMAGERY_DATA", finalFileEntries);
-  } catch (e) {
-    console.error(`Failed to load imagery data`, e)
-    event.reply("LOAD_EARTH_IMAGERY_DATA", 'error');
-  }
-});
-
-ipcMain.on("GET_DRYWELL_IMAGES", async (event, arg) => {
-  try {
-    const finalFileEntries = await loadImageryIntoLocalStorage(Imagery.Drywell, mainWindow)
-    event.reply("GET_DRYWELL_IMAGES", finalFileEntries);
-  } catch (e) {
-    console.error(`Failed to load drywell imagery data`, e)
-    event.reply("GET_DRYWELL_IMAGES", 'error');
-  }
-});
-
-ipcMain.on("GET_SENSOR_DATA", (event, arg) => {
-  console.log("IPC GET SENSOR DATA")
-  client.query('SELECT * from sensor_data ORDER BY time DESC LIMIT 5', (err, res) => {
-    if (err) throw err
-    console.log("TOM PG DATA")
-    console.log(res)
-    event.reply("GET_SENSOR_DATA", res.rows);
-    //client.end()
-  })
-});

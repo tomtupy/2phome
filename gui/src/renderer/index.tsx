@@ -15,3 +15,4 @@ root.render(
 window.electron.ipcRenderer.getSensorData();
 window.electron.ipcRenderer.loadEarthImageryData();
 window.electron.ipcRenderer.getDrywellImages();
+window.electron.ipcRenderer.getPingData();

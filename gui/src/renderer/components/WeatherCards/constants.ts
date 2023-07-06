@@ -29,15 +29,22 @@ export const WEATHER_CODE_MAP: Record<number, [string, string]> = {
     99: ["Heavy thunderstorm, hail",'url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSAoYykgYW1tYXAuY29tIHwgU1ZHIHdlYXRoZXIgaWNvbnMgLS0+CjxzdmcKICAgIHZlcnNpb249IjEuMSIKICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgd2lkdGg9IjY0IgogICAgaGVpZ2h0PSI2NCIKICAgIHZpZXdib3g9IjAgMCA2NCA2NCI+CiAgICA8ZGVmcz4KICAgICAgICA8ZmlsdGVyIGlkPSJibHVyIiB3aWR0aD0iMjAwJSIgaGVpZ2h0PSIyMDAlIj4KICAgICAgICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VBbHBoYSIgc3RkRGV2aWF0aW9uPSIzIi8+CiAgICAgICAgICAgIDxmZU9mZnNldCBkeD0iMCIgZHk9IjQiIHJlc3VsdD0ib2Zmc2V0Ymx1ciIvPgogICAgICAgICAgICA8ZmVDb21wb25lbnRUcmFuc2Zlcj4KICAgICAgICAgICAgICAgIDxmZUZ1bmNBIHR5cGU9ImxpbmVhciIgc2xvcGU9IjAuMDUiLz4KICAgICAgICAgICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPgogICAgICAgICAgICA8ZmVNZXJnZT4gCiAgICAgICAgICAgICAgICA8ZmVNZXJnZU5vZGUvPgogICAgICAgICAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+IAogICAgICAgICAgICA8L2ZlTWVyZ2U+CiAgICAgICAgPC9maWx0ZXI+CiAgICA8L2RlZnM+CiAgICA8ZyBmaWx0ZXI9InVybCgjYmx1cikiIGlkPSJ0aHVuZGVyIj4KICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMCwxMCkiPgogICAgICAgICAgICA8ZyBjbGFzcz0iYW0td2VhdGhlci1jbG91ZC0xIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik00Ny43LDM1LjQgICAgIGMwLTQuNi0zLjctOC4yLTguMi04LjJjLTEsMC0xLjksMC4yLTIuOCwwLjVjLTAuMy0zLjQtMy4xLTYuMi02LjYtNi4yYy0zLjcsMC02LjcsMy02LjcsNi43YzAsMC44LDAuMiwxLjYsMC40LDIuMyAgICAgYy0wLjMtMC4xLTAuNy0wLjEtMS0wLjFjLTMuNywwLTYuNywzLTYuNyw2LjdjMCwzLjYsMi45LDYuNiw2LjUsNi43bDE3LjIsMEM0NC4yLDQzLjMsNDcuNywzOS44LDQ3LjcsMzUuNHoiIGZpbGw9IiM5MUMwRjgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS4yIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTAsLTYpLCBzY2FsZSgwLjYpIiAvPgogICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTQ3LjcsMzUuNCAgICAgYzAtNC42LTMuNy04LjItOC4yLTguMmMtMSwwLTEuOSwwLjItMi44LDAuNWMtMC4zLTMuNC0zLjEtNi4yLTYuNi02LjJjLTMuNywwLTYuNywzLTYuNyw2LjdjMCwwLjgsMC4yLDEuNiwwLjQsMi4zICAgICBjLTAuMy0wLjEtMC43LTAuMS0xLTAuMWMtMy43LDAtNi43LDMtNi43LDYuN2MwLDMuNiwyLjksNi42LDYuNSw2LjdsMTcuMiwwQzQ0LjIsNDMuMyw0Ny43LDM5LjgsNDcuNywzNS40eiIgZmlsbD0iIzU3QTBFRSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjEuMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIwLC0xMSkiIC8+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTksMjgpLCBzY2FsZSgxLjIpIj4KICAgICAgICAgICAgICAgIDxwb2x5Z29uIGNsYXNzPSJhbS13ZWF0aGVyLXN0cm9rZSIgZmlsbD0ib3JhbmdlIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEiIHBvaW50cz0iMTQuMywtMi45IDIwLjUsLTIuOSAxNi40LDQuMyAyMC4zLDQuMyAxMS41LDE0LjYgMTQuOSw2LjkgMTEuMSw2LjkiIC8+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==)'],
   };
   
-  export const WEATHER_API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=45.5163&longitude=-122.7726&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,precipitation,rain,showers,snowfall,snow_depth,weathercode,surface_pressure&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FLos_Angeles'
+  export const WEATHER_API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=45.5163&longitude=-122.7726&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,precipitation,rain,showers,snowfall,snow_depth,weathercode,surface_pressure&daily=precipitation_probability_max,weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FLos_Angeles'
 
   export const FORECAST_CHART_OPTIONS = {
     chart: {
-      width: 437,
+      width: 610,
       height: 145,
-      backgroundColor: "#282c34",
+      backgroundColor: "#515151",
       borderRadius: 10,
-      spacing: [0,0,0,0]
+      spacing: [0,0,0,0],
+      marginRight: 50,
+      marginLeft: 3,
+      paddingLeft: 0,
+      paddingRight: 0
+    },
+    credits: {
+      enabled: false,
     },
     title: {
       text: ''
@@ -55,47 +62,95 @@ export const WEATHER_CODE_MAP: Record<number, [string, string]> = {
       tickWidth: 0,
       gridLineWidth: 1,
       gridLineColor: "#888888",
+      lineWidth: 0,
       labels: {
           align: 'left',
-          x: 20,
-          y: -6,
+          x: 22,
+          y: 10,
           format: '{value:%a}',
+          style: {
+            color: '#FFFFFF',
+            fontWeight: 'bold'
+          }
+      }
+    } as Highcharts.XAxisOptions,
+    yAxis: [
+      {
+        title: false,
+        opposite: true,
+        labels: {
+          formatter(this: Highcharts.AxisLabelsFormatterContextObject) {
+            return this.value + "°F";
+          },
+          align: 'left',
+          x: 0,
+          step: 1,
           style: {
             color: '#FFFFFF'
           }
-      },
-    } as Highcharts.XAxisOptions,
-    yAxis: {
-      title: false,
-      opposite: true,
-      labels: {
-        formatter(this: Highcharts.AxisLabelsFormatterContextObject) {
-          return this.value + '°F';
-        },
-        align: 'left',
-        x: 3,
-        step: 1
-      } as Highcharts.YAxisLabelsOptions,
-      gridLineWidth: 0,
-      minorGridLineWidth: 1,
-      minorTickColor: "#888888",
-      minorGridLineColor: "#888888",
-      minorTickInterval: 5,
-      minorGridLineDashStyle: 'Dot',
-      maxPadding:0,
-      minPadding:0,
-      startOnTick: false,
-      endOnTick: false
-      //min: min_temp - 2,
-      //max: max_temp + 5,
-    } as Highcharts.YAxisOptions,
+        } as Highcharts.YAxisLabelsOptions,
+        gridLineWidth: 1,
+        minorGridLineWidth: 1,
+        minorTickColor: "#888888",
+        tickColor: "#AAAAAA",
+        minorGridLineColor: "#888888",
+        gridLineColor: "#AAAAAA",
+        minorTickInterval: 5,
+        tickInterval:10,
+        minorGridLineDashStyle: 'Dot',
+        gridLineDashStyle: 'Dot',
+        maxPadding:0,
+        minPadding:0,
+        startOnTick: false,
+        endOnTick: false,
+        //min: min_temp - 2,
+        //max: max_temp + 5,
+      } as Highcharts.YAxisOptions, 
+      {
+        visible: false,
+        title: false,
+        opposite: false,
+        offset: 25,
+        labels: {
+          formatter(this: Highcharts.AxisLabelsFormatterContextObject) {
+            return this.value + 'in';
+          },
+          align: 'left',
+          x: 3,
+          step: 1,
+          style: {
+            color: '#FFFFFF'
+          }
+        } as Highcharts.YAxisLabelsOptions,
+        gridLineWidth: 0,
+        minorGridLineWidth: 1,
+        minorTickColor: "#888888",
+        minorGridLineColor: "#888888",
+        minorTickInterval: 5,
+        minorGridLineDashStyle: 'Dot',
+        maxPadding:0,
+        minPadding:0.1,
+        startOnTick: false,
+        endOnTick: false,
+        lineWidth: 0,
+        //min: min_temp - 2,
+        //max: max_temp + 5,
+      } as Highcharts.YAxisOptions
+    ],
     legend: { enabled: false },
-    series: [{
-      type: 'spline',
-      data: [],
-    } as Highcharts.SeriesSplineOptions,
-    {
-      type: 'scatter',
-      data: [],
-    } as Highcharts.SeriesScatterOptions]
+    series: [
+      {
+        type: 'column',
+        data: [],
+        yAxis: 1,
+      } as Highcharts.SeriesColumnOptions,
+      {
+        type: 'scatter',
+        data: [],
+      } as Highcharts.SeriesScatterOptions,
+      {
+        type: 'spline',
+        data: [],
+      } as Highcharts.SeriesSplineOptions
+    ]
   }

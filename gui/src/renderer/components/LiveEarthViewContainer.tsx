@@ -28,7 +28,7 @@ function LiveEarthViewContainer() {
 
   const getImagery = () => {
     dispatch(liveEarthView.actions.setImageryDataFetchStatus(DataFetchStatus.IN_PROGRESS))
-    //window.electron.ipcRenderer.loadEarthImageryData();
+    window.electron.ipcRenderer.loadEarthImageryData();
     window.electron.ipcRenderer.once('LOAD_EARTH_IMAGERY_DATA', (image_list) => {
       if (Array.isArray(image_list)) {
         dispatch(liveEarthView.actions.setImageryData(image_list))
@@ -104,8 +104,8 @@ function LiveEarthViewContainer() {
       const context = myCanvas.current?.getContext("2d");
       //context!.imageSmoothingEnabled = false;
       //context!.globalCompositeOperation = "overlay";
-      context!.clearRect(0, 0, 600, 600)
-      context!.drawImage(imageItems[animationIndex], 0, 0, 600, 600);
+      context!.clearRect(0, 0, 768, 768)
+      context!.drawImage(imageItems[animationIndex], 0, 0, 768, 768);
       dispatch(liveEarthView.actions.setAnimationIndex(animationIndex))
       animationIndex = (animationIndex + 1) % imageFiles.length
       previousTimeRef.current = time;
@@ -118,7 +118,7 @@ function LiveEarthViewContainer() {
     return () => cancelAnimationFrame(requestRef.current);
   }, [imageItems, imageLoadState]);
 
-  return <canvas style={{borderTopLeftRadius: '0.375rem', borderTopRightRadius: '0.375rem'}} ref={myCanvas} width={600} height={600} />;
+  return <canvas ref={myCanvas} width={768} height={768} />;
 }
 
 export default LiveEarthViewContainer
