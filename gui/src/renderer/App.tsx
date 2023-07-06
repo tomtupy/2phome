@@ -16,6 +16,7 @@ import WeatherForecastTile from './components/WeatherCards/WeatherForecastTile';
 import CurrentWeatherTile from './components/WeatherCards/CurrentWeatherTile';
 import ThermostatTile from './components/Thermostat/ThermostatTile';
 import NetworkTile from './components/Network/NetworkTile';
+import HouseViewContainer from './components/HouseViewContainer';
 
 
 const _2pHome = () => {
@@ -59,6 +60,11 @@ const _2pHome = () => {
           <Row style={{margin: 0}}>
             <Col style={{paddingLeft: 0, paddingRight: 0}}>
               <WeatherForecastTile />
+            </Col>
+          </Row>
+          <Row style={{margin: 0, marginTop: '3px'}}>
+            <Col style={{paddingLeft: 0, paddingRight: 0}}>
+              <HouseViewContainer />
             </Col>
           </Row>
         </Col>

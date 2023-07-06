@@ -19,7 +19,7 @@ export class IpcHandlers {
       port: 5432,
       user: 'tom',
       password: '',
-      database: '2phome'
+      database: '2phome',
     })
     
     this.pgClient.connect((err) => {
@@ -56,12 +56,30 @@ export class IpcHandlers {
     });
     
     ipcMain.on("GET_SENSOR_DATA", (event, arg) => {
-      console.log("IPC GET SENSOR DATA")
-      this.pgClient.query('SELECT * from sensor_data ORDER BY time DESC LIMIT 5', (err, res) => {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - 5); // subtract 5 mins
+      const lowerTsBoundStr = this.getDateString(now);
+      now.setMinutes(now.getMinutes() + 10); // add 10 mins
+      const upperTsBoundStr = this.getDateString(now);
+
+      console.log("IPC GET SENSOR DATA", lowerTsBoundStr, upperTsBoundStr)
+
+      this.pgClient.query("SELECT DISTINCT ON (sensor_id) sensor_id, time, data, secondary_data, additional_data  FROM sensor_data where time > '" + lowerTsBoundStr + "' and time < '" + upperTsBoundStr + "' ORDER BY sensor_id, time DESC;", 
+      (err, res) => {
         if (err) throw err
         console.log("TOM PG DATA")
         console.log(res)
-        event.reply("GET_SENSOR_DATA", res.rows);
+        const parsedRows: SensorDataEntry[] = res.rows.map(row => (
+            {
+              'sensor_id': row['sensor_id'],
+              'time': new Date(row['time']),
+              'data': row['data'],
+              'secondary_data': row['secondary_data'],
+              'additional_data': row['additional_data']
+            } as SensorDataEntry
+          )
+        )
+        event.reply("GET_SENSOR_DATA", parsedRows);
         //client.end()
       })
     });
@@ -72,7 +90,7 @@ export class IpcHandlers {
         console.log("EXEC PYTHING SCRIPT", arg)
         //const finalFileEntries = await loadImageryIntoLocalStorage(Imagery.Drywell, this.mainWindow)
         const python = await spawn('python3', [arg, 'welcome', 'Duyen']);
-        console.log("SCRIPT RESULT", python)
+        //console.log("SCRIPT RESULT", python)
         // collect data from script
         await python.stdout.on('data', function (data) {
           dataToSend = data.toString();
@@ -111,5 +129,9 @@ export class IpcHandlers {
         app.quit();
       }
     });
+  }
+
+  getDateString(ts: Date) {
+    return ts.getFullYear() + '-' + ("0" + (ts.getMonth() + 1)).slice(-2) + '-' + ("0" + ts.getDate()).slice(-2) + ' ' + ("0" + ts.getHours()).slice(-2) + ':' + ("0" + (ts.getMinutes())).slice(-2) + ':00';
   }
 }

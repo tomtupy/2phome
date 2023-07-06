@@ -159,6 +159,7 @@
     ]
   },
   "devDependencies": {
+    "@indot/rainbowvis":"^1.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.5",
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
     "@testing-library/jest-dom": "^5.16.4",
@@ -254,6 +255,7 @@
     "moment": "^2.29.3",
     "moment-round": "^1.0.1",
     "pg": "^8.8.0",
+    "rainbowvis.js": "^1.1.1",
     "react": "^18.0.9",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",

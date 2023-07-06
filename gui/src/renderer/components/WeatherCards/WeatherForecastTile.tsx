@@ -113,7 +113,7 @@ function WeatherForecastTile() {
             <Row style={{marginLeft: '6px'}}>
             { weatherData?.daily.time.map((time, i) => {
               return (
-              <div className='weather-forecast-day-info-container'>
+              <div key={time + "_max"} className='weather-forecast-day-info-container'>
                 <div className='weather-forecast-day-info-row'>
                   <MDBIcon
                       fas
@@ -122,7 +122,7 @@ function WeatherForecastTile() {
                     />{" "}
                     <span>{weatherData?.daily.temperature_2m_max[i]}{weatherData?.daily_units.temperature_2m_max}</span>
                 </div>
-                <div className='weather-forecast-day-info-row'>
+                <div key={time + "_min"} className='weather-forecast-day-info-row'>
                   <MDBIcon
                       fas
                       icon="temperature-arrow-down fa-fw"
@@ -130,7 +130,7 @@ function WeatherForecastTile() {
                     />{" "}
                     <span>{weatherData?.daily.temperature_2m_min[i]}{weatherData?.daily_units.temperature_2m_min}</span>
                 </div>
-                <div className='weather-forecast-day-info-row'>
+                <div key={time + "_percip_prob"} className='weather-forecast-day-info-row'>
                   <MDBIcon
                       fas
                       icon="droplet fa-fw"
@@ -138,7 +138,7 @@ function WeatherForecastTile() {
                     />{" "}
                     <span>{weatherData?.daily.precipitation_probability_max[i]}{weatherData?.daily_units.precipitation_probability_max}</span>
                 </div>
-                <div className='weather-forecast-day-info-row'>
+                <div key={time + "_percip_sum"} className='weather-forecast-day-info-row'>
                   <MDBIcon
                       fas
                       icon="droplet fa-fw"

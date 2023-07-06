@@ -2,12 +2,11 @@ import React from 'react';
 import { useEffect } from "react";
 import { Card, Col, Row } from 'react-bootstrap';
 import {  MDBIcon } from 'mdb-react-ui-kit';
-import { Sparklines, SparklinesLine, SparklinesNormalBand, SparklinesSpots } from 'react-sparklines';
+import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 
 const PING_VALUE_RETENTION_MAX = 60
 
 function NetworkTile() {
-  //const [thermostatData, setThermostatData] = React.useState<String | null>(null)
   const [pingData, setPingData] = React.useState<number[]>([])
 
   const getPingData = async () => {
@@ -32,6 +31,11 @@ function NetworkTile() {
 
   const average = (array: number[]) => (array.length > 0 ? array.reduce((a, b) => a + b) / array.length : 0);
 
+
+  if (pingData.length < 1) {
+    return (<></>);
+  }
+
   return (
     <>
         <Card text='white' className='sidebar-card' style={{height: '145px'}}>
@@ -54,7 +58,6 @@ function NetworkTile() {
                 <Sparklines data={pingData} limit={5} width={100} height={20} margin={5} style={{background: "#535353"}}>
                     <SparklinesLine color="blue" />
                     <SparklinesSpots />
-                    <SparklinesNormalBand style={{ fill: "#2991c8", fillOpacity: .1 }} />
                 </Sparklines>
                 </div>
               </Col>
