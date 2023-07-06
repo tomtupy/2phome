@@ -14,6 +14,7 @@ import urllib.request
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
+from PIL import Image, ImageOps
 import lib.config as conf
 import newrelic.agent
 
@@ -69,13 +70,24 @@ def download_and_process_imagery(last_timestamp):
         last_timestamp = timestamp
         conf.logger.info('Downloading ' + file_url)
         try:
-            urllib.request.urlretrieve(
-                file_url,
-                get_image_file_path(
+            image_location = get_image_file_path(
                     conf.IMAGE_DATA_LOCATION,
                     (str(timestamp) + conf.IMAGE_FORMAT))
+            urllib.request.urlretrieve(
+                file_url,
+                image_location
             )
             downloaded_image_count += 1
+
+            if conf.IMAGE_POSTPROCESSING_ENABLED:
+                left_pos = conf.IMAGE_POSTPROCESSING_SUBSEL_POS[0]
+                upper_pos = conf.IMAGE_POSTPROCESSING_SUBSEL_POS[1]
+                right_pos = conf.IMAGE_POSTPROCESSING_SUBSEL_SIZE[0] + left_pos
+                lower_pos = conf.IMAGE_POSTPROCESSING_SUBSEL_SIZE[1] + upper_pos
+                image = Image.open(image_location)
+                cropped = image.crop((left_pos, upper_pos, right_pos, lower_pos))
+                cropped.save(image_location)
+
         except Exception as err:
             conf.logger.warning(
                 'Image download failed: {0}'.format(err)
