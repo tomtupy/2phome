@@ -16,7 +16,7 @@ function HouseViewContainer() {
   const canvas = useRef<HTMLCanvasElement | null>(null);
   const colorGradient = rainbow()
   // https://mycolor.space/gradient3?ori=to+left&hex=%23FF3700&hex2=%2300B928&hex3=%232100FF&submit=submit
-  colorGradient.setSpectrum('#ea5f26', '#e47d13', '#db970a', '#ceb01c', '#bec639', '#98d157', '#6dda7a', '#2ce0a1', '#00dacd', '#00cfef', '#00c0ff', '#62aefc');
+  colorGradient.setSpectrum('#62aefc', '#00c0ff', '#00cfef', '#00dacd', '#2ce0a1', '#6dda7a', '#98d157', '#bec639', '#ceb01c', '#db970a', '#e47d13', '#ea5f26');
   colorGradient.setNumberRange(0,150);
 
   const getSensorData = async () => {
